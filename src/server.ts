@@ -1,9 +1,11 @@
 import express from "express";
 import "reflect-metadata";
 import { AppDataSource } from "./database/data-source.js";
+import { authRoutes } from "./routes/authRoutes.js"; 
 
 const app = express();
 app.use(express.json());
+app.use(authRoutes);
 
 const PORT = process.env.PORT || 3000;
 

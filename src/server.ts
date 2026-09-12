@@ -1,9 +1,11 @@
 import express from "express";
 import "reflect-metadata";
 import { AppDataSource } from "./database/data-source.js";
+import { userRoutes } from "./routes/userRoutes.js"; 
 
 const app = express();
 app.use(express.json());
+app.use(userRoutes);
 
 const PORT = process.env.PORT || 3000;
 

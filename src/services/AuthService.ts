@@ -2,6 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { AppDataSource } from "../database/data-source.js";
 import { User } from "../entities/User.js";
+import { gerarToken } from "../utils/jwt.js";
 
 interface ILoginRequest {
   email: string;
@@ -28,18 +29,8 @@ export class AuthService {
       throw new Error("Credenciais inválidas.");
     }
 
-    const secret = process.env.JWT_SECRET;
-    if (!secret) {
-      throw new Error("JWT_SECRET não configurado no ambiente.");
-    }
-
-    // Emite o token JWT contendo id e perfil do usuário (RF07)
-    const token = jwt.sign(
-      { id: user.id, role: user.role },
-      secret,
-      { expiresIn: "1h" }
-    );
-
+    const token = gerarToken({ id: user.id, role: user.role });
+    
     return {
       token,
       user: {

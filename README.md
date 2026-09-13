@@ -37,9 +37,12 @@ API backend desenvolvida para o gerenciamento e controle de acesso de uma plataf
     DB_NAME=medclinic
     JWT_SECRET=sua_chave_secreta_jwt
 
+    (Caso desejar, em "\medclinic-api\SQL\DB_Script.sql" você encontra o script de criação do banco "medclinic".)
+
 4. Faça as migrações para criar as tabelas no banco de dados:
 
     npm run typeorm migration:run
+
 
 🚀 Executando a Aplicação:
 

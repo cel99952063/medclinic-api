@@ -13,6 +13,11 @@ export function errorMiddleware(
     return res.status(400).json({ error: error.message });
   }
 
+  // Erro de conflito de cadastro (ex: e-mail já cadastrado)
+  if (error.message.includes("já cadastrado")) {
+    return res.status(409).json({ error: error.message });
+  }
+
   // Erro padrão para falhas internas do servidor
   return res.status(500).json({
     error: "Erro interno do servidor.",

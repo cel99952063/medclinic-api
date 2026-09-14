@@ -16,6 +16,10 @@ API backend desenvolvida para o gerenciamento e controle de acesso de uma plataf
 * Node.js (versão 18+)
 * Gerenciador de pacotes npm
 * Servidor PostgreSQL
+* TypeORM
+* Express
+* JWT
+* Bcrypt
 
 ## ⚙️ Configuração e Instalação
 
@@ -41,7 +45,7 @@ API backend desenvolvida para o gerenciamento e controle de acesso de uma plataf
 
 4. Faça as migrações para criar as tabelas no banco de dados:
 
-    npm run typeorm migration:run
+    npm run typeorm migration:run -- -d src/database/data-source.ts
 
 
 🚀 Executando a Aplicação:
@@ -57,7 +61,7 @@ Autenticação e Usuários:
 
         Realiza o cadastro de um novo usuário (name, email, password, role):
 
-        Roles aceitas: admin, atendente.
+        Roles aceitas: 'admin' e 'Atendente'
 
 
             *Exemplo de cadastro ADMIN válido:

@@ -29,6 +29,13 @@ export class UserService {
     if (userExists) {
       throw new Error("E-mail já cadastrado no sistema.");
     }
+    // Valida se a role informada é válida (RF09 / RF11)
+    const allowedRoles = ["admin", "Atendente"];
+    const finalRole = role || "Atendente";
+    
+    if (!allowedRoles.includes(finalRole)) {
+      throw new Error("Perfil (role) inválido. Utilize 'admin' ou 'Atendente'.");
+    }
 
     // Criptografia da senha (RF06 / RNF05)
     const saltRounds = 10;

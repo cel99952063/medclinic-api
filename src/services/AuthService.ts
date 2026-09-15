@@ -3,14 +3,16 @@ import jwt from "jsonwebtoken";
 import { AppDataSource } from "../database/data-source.js";
 import { User } from "../entities/User.js";
 import { gerarToken } from "../utils/jwt.js";
+import type { LoginDTO } from "../dtos/LoginDTO.js";
+import type { AuthResponseDTO } from "../dtos/AuthResponseDTO.js";
 
-interface ILoginRequest {
+/*interface ILoginRequest {
   email: string;
   password: string;
-}
+}*/
 
 export class AuthService {
-  async execute({ email, password }: ILoginRequest) {
+  async execute({ email, password }: LoginDTO): Promise<AuthResponseDTO> {
     const userRepository = AppDataSource.getRepository(User);
 
     if (!email || !password) {
@@ -38,6 +40,7 @@ export class AuthService {
         name: user.name,
         email: user.email,
         role: user.role,
+        created_at: user.created_at,
       },
     };
   }

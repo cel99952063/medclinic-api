@@ -1,16 +1,18 @@
 import bcrypt from "bcrypt";
 import { AppDataSource } from "../database/data-source.js";
 import { User } from "../entities/User.js";
+import { type CreateUserDTO } from "../dtos/CreateUserDTO.js";
+import { type UserResponseDTO } from "../dtos/UserResponseDTO.js";
 
-interface IUserRequest {
+/* interface IUserRequest {
   name: string;
   email: string;
   password: string;
   role?: string;
-}
+} */
 
 export class UserService {
-  async execute({ name, email, password, role }: IUserRequest) {
+  async execute({ name, email, password, role }: CreateUserDTO): Promise<UserResponseDTO> {
     const userRepository = AppDataSource.getRepository(User);
 
     // Valida campos obrigatórios (RF05 RF11)
